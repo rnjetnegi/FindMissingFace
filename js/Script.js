@@ -11,8 +11,17 @@ function generateFaces(){
 		face.style.top = PositionTop + "px";
 		face.style.left = PositionLeft + "px";
 		theleftSide.appendChild(face);
-		rface = face.cloneNode(true);
-		therightSide.appendChild(rface);
-
 	}
+	therightSide.appendChild(theleftSide.cloneNode(true));
+	var last_child = therightSide.firstChild.lastChild;
+	therightSide.childNodes[0].removeChild(last_child);
+
+
+	var theBody = document.getElementsByTagName("body")[0];
+	theBody.lastChild.onClick = nextLevel(event){
+		 event.stopPropagation();
+		 numberOfFaces += 1;
+		 generateFaces();
+	}
+
 }
